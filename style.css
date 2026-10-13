@@ -1,0 +1,1193 @@
+/* ============================================
+   DRAGON BALL SUPER - CONVITE PARA BEATRIZ
+   ============================================ */
+
+/* === RESET & BASE === */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ki-gold: #FFD700;
+    --ki-orange: #FF8C00;
+    --ki-blue: #00BFFF;
+    --ki-ultra: #C0C0FF;
+    --saiyan-yellow: #FFEA00;
+    --dbz-red: #FF3B3F;
+    --dbz-dark: #0A0A1A;
+    --dbz-darker: #050510;
+    --aura-cyan: #00E5FF;
+    --aura-purple: #9C27B0;
+    --heart-pink: #FF69B4;
+    --glow-intensity: 0.8;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+    background: var(--dbz-darker);
+    color: #fff;
+}
+
+/* === STARS CANVAS === */
+#stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* === KI PARTICLES CONTAINER === */
+#ki-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.ki-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: ki-float linear infinite;
+}
+
+@keyframes ki-float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* === SCREENS === */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ============================
+   INTRO SCREEN
+   ============================ */
+.intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.dragon-radar-ping {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 2px solid var(--ki-gold);
+    opacity: 0;
+    animation: radar-ping 2s ease-out infinite;
+}
+
+@keyframes radar-ping {
+    0% {
+        transform: scale(0.5);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+.intro-subtitle {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--ki-gold);
+    text-shadow:
+        0 0 10px rgba(255, 215, 0, 0.5),
+        0 0 30px rgba(255, 140, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+.dragon-balls-img {
+    width: clamp(200px, 40vw, 350px);
+    height: auto;
+    border-radius: 20px;
+    box-shadow:
+        0 0 30px rgba(255, 215, 0, 0.4),
+        0 0 60px rgba(255, 140, 0, 0.2);
+}
+
+.pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow:
+            0 0 30px rgba(255, 215, 0, 0.4),
+            0 0 60px rgba(255, 140, 0, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 0 50px rgba(255, 215, 0, 0.7),
+            0 0 100px rgba(255, 140, 0, 0.4),
+            0 0 150px rgba(255, 215, 0, 0.2);
+    }
+}
+
+.intro-text {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.85);
+    font-style: italic;
+}
+
+/* === SLIDE UP ANIMATION === */
+.slide-up {
+    animation: slide-up 1s ease-out forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ============================
+   DBZ BUTTONS
+   ============================ */
+.dbz-btn {
+    position: relative;
+    padding: 16px 48px;
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10;
+}
+
+.dbz-btn:hover {
+    transform: scale(1.08);
+}
+
+.dbz-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-aura {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.dbz-btn:hover .btn-aura {
+    opacity: 1;
+}
+
+/* Summon Button */
+.summon-btn {
+    background: linear-gradient(135deg, #FF8C00 0%, #FFD700 50%, #FF6B00 100%);
+    color: var(--dbz-dark);
+    box-shadow:
+        0 0 20px rgba(255, 140, 0, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: summon-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes summon-pulse {
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(255, 140, 0, 0.5),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow:
+            0 0 40px rgba(255, 140, 0, 0.8),
+            0 0 80px rgba(255, 215, 0, 0.4),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Yes Button */
+.yes-btn {
+    background: linear-gradient(135deg, #00C853 0%, #00E676 50%, #69F0AE 100%);
+    color: var(--dbz-dark);
+    box-shadow:
+        0 0 25px rgba(0, 200, 83, 0.5),
+        0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: yes-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes yes-glow {
+    0%, 100% {
+        box-shadow:
+            0 0 25px rgba(0, 200, 83, 0.5),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow:
+            0 0 50px rgba(0, 200, 83, 0.8),
+            0 0 100px rgba(0, 230, 118, 0.4),
+            0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.yes-aura {
+    background: radial-gradient(circle, rgba(0, 230, 118, 0.3) 0%, transparent 70%);
+}
+
+/* No Button */
+.no-btn {
+    background: linear-gradient(135deg, #757575 0%, #9E9E9E 50%, #BDBDBD 100%);
+    color: var(--dbz-dark);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    font-size: clamp(0.9rem, 2vw, 1.2rem);
+    padding: 12px 32px;
+    transition: all 0.3s ease;
+}
+
+.no-btn:hover {
+    transform: scale(0.9);
+}
+
+/* ============================
+   SHENLONG SCREEN
+   ============================ */
+.shenlong-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 3;
+}
+
+.shenlong-text {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: var(--aura-cyan);
+    text-shadow:
+        0 0 20px rgba(0, 229, 255, 0.6),
+        0 0 40px rgba(0, 229, 255, 0.3),
+        0 0 80px rgba(0, 191, 255, 0.2);
+    animation: text-flicker 0.1s ease-in-out 3;
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+.shenlong-sub {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    color: rgba(255, 255, 255, 0.7);
+    animation: fade-in 1s ease-out 0.5s both;
+}
+
+.shenlong-quote {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    color: var(--ki-gold);
+    text-shadow:
+        0 0 15px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(255, 140, 0, 0.3);
+    animation: fade-in 1s ease-out 1.5s both, shenlong-glow 2s ease-in-out infinite 2.5s;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shenlong-glow {
+    0%, 100% {
+        text-shadow:
+            0 0 15px rgba(255, 215, 0, 0.6),
+            0 0 40px rgba(255, 140, 0, 0.3);
+    }
+    50% {
+        text-shadow:
+            0 0 30px rgba(255, 215, 0, 0.9),
+            0 0 60px rgba(255, 140, 0, 0.5),
+            0 0 100px rgba(255, 215, 0, 0.2);
+    }
+}
+
+.lightning-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.lightning-flash.active {
+    animation: lightning 0.6s ease-out;
+}
+
+@keyframes lightning {
+    0% { opacity: 0.9; }
+    10% { opacity: 0.2; }
+    20% { opacity: 0.8; }
+    30% { opacity: 0.1; }
+    40% { opacity: 0.6; }
+    100% { opacity: 0; }
+}
+
+.sky-darken {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 20, 0, 0.8) 100%);
+    z-index: -1;
+}
+
+/* ============================
+   QUESTION SCREEN
+   ============================ */
+.question-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) saturate(1.3);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at center, rgba(10, 10, 26, 0.3) 0%, rgba(10, 10, 26, 0.85) 100%),
+        linear-gradient(180deg, transparent 60%, rgba(10, 10, 26, 0.95) 100%);
+}
+
+.question-box {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    background: rgba(10, 10, 30, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow:
+        0 0 40px rgba(255, 215, 0, 0.1),
+        inset 0 0 40px rgba(0, 0, 0, 0.3);
+    animation: box-appear 1s ease-out forwards;
+}
+
+@keyframes box-appear {
+    from {
+        transform: scale(0.8) translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.ki-aura-border {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 26px;
+    background: linear-gradient(45deg, var(--ki-gold), var(--ki-orange), var(--ki-blue), var(--ki-gold));
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: aura-shift 4s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+@keyframes aura-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.power-level-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+
+.power-label {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.power-value {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--ki-orange);
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    animation: power-flash 1s ease-in-out infinite;
+}
+
+@keyframes power-flash {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.main-question {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.question-line {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.question-line.highlight {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    background: linear-gradient(135deg, var(--ki-gold), var(--ki-orange), var(--saiyan-yellow));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4));
+    animation: highlight-pulse 2s ease-in-out infinite;
+}
+
+@keyframes highlight-pulse {
+    0%, 100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.4)); }
+    50% { filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.7)); }
+}
+
+.question-sub {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+    font-weight: 300;
+}
+
+.buttons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ============================
+   GOKU BLOCKER SYSTEM
+   ============================ */
+.no-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.goku-blocker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.15s ease;
+}
+
+.goku-blocker.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Instant Transmission Flash */
+.goku-it-flash {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(0, 191, 255, 0.6) 30%, transparent 70%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 60;
+}
+
+.goku-it-flash.flash {
+    animation: it-flash 0.4s ease-out forwards;
+}
+
+@keyframes it-flash {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(0.2); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(2.5); }
+}
+
+/* Goku's Aura */
+.goku-aura {
+    position: relative;
+    width: 120px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.goku-aura::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    border-radius: 50% 50% 40% 40%;
+    background: radial-gradient(ellipse, rgba(255, 215, 0, 0.3) 0%, rgba(255, 180, 0, 0.15) 40%, transparent 70%);
+    animation: goku-aura-pulse 0.8s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+.goku-aura::after {
+    content: '';
+    position: absolute;
+    top: -25px;
+    left: -20px;
+    right: -20px;
+    bottom: -10px;
+    border-radius: 50% 50% 40% 40%;
+    background: radial-gradient(ellipse, rgba(255, 234, 0, 0.15) 0%, transparent 60%);
+    animation: goku-aura-pulse 0.6s ease-in-out infinite alternate-reverse;
+    z-index: -1;
+}
+
+@keyframes goku-aura-pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Goku Character */
+.goku-character {
+    animation: goku-float 2s ease-in-out infinite;
+}
+
+@keyframes goku-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.goku-body {
+    position: relative;
+    width: 90px;
+    height: 120px;
+}
+
+/* SSJ Hair */
+.goku-hair {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 38px;
+    z-index: 3;
+}
+
+.goku-hair::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 20px;
+    background: #FFD700;
+    border-radius: 50% 50% 40% 40%;
+}
+
+.goku-hair::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 28px solid #FFD700;
+    filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.6));
+}
+
+/* Face */
+.goku-face {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 38px;
+    height: 32px;
+    background: #FDDCB5;
+    border-radius: 50% 50% 45% 45%;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.goku-eye {
+    position: absolute;
+    top: 10px;
+    width: 7px;
+    height: 8px;
+    background: #1a1a2e;
+    border-radius: 50%;
+}
+
+.goku-eye.left { left: 7px; }
+.goku-eye.right { right: 7px; }
+
+/* Angry eyebrows */
+.goku-eye::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -1px;
+    width: 9px;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 2px;
+}
+
+.goku-eye.left::before {
+    transform: rotate(15deg);
+}
+
+.goku-eye.right::before {
+    transform: rotate(-15deg);
+}
+
+.goku-mouth {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 6px;
+    border-bottom: 3px solid #c0392b;
+    border-radius: 0 0 50% 50%;
+}
+
+/* Torso / Gi */
+.goku-torso {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 46px;
+    background: linear-gradient(180deg, #FF6B00 0%, #E85D00 100%);
+    border-radius: 8px 8px 4px 4px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 -3px 6px rgba(0,0,0,0.2);
+}
+
+.goku-torso::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 100%;
+    background: linear-gradient(180deg, #003399 0%, #002277 100%);
+    border-radius: 3px;
+}
+
+.goku-gi-symbol {
+    font-size: 14px;
+    color: #003399;
+    font-weight: bold;
+    z-index: 2;
+    text-shadow: 0 0 3px rgba(0, 51, 153, 0.5);
+    position: relative;
+    top: -2px;
+}
+
+/* Arms - blocking pose (X shape) */
+.goku-arm {
+    position: absolute;
+    top: 50px;
+    width: 14px;
+    height: 44px;
+    background: linear-gradient(180deg, #FF6B00 0%, #FDDCB5 60%);
+    border-radius: 6px;
+    z-index: 4;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+}
+
+.goku-arm.left-arm {
+    left: -4px;
+    transform: rotate(35deg);
+    transform-origin: top center;
+}
+
+.goku-arm.right-arm {
+    right: -4px;
+    transform: rotate(-35deg);
+    transform-origin: top center;
+}
+
+/* Speech Bubble */
+.goku-speech-bubble {
+    position: absolute;
+    bottom: 115%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a1a2e;
+    padding: 8px 14px;
+    border-radius: 14px;
+    font-family: 'Bangers', cursive;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(255, 215, 0, 0.3);
+    border: 2px solid var(--ki-gold);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 55;
+}
+
+.goku-speech-bubble.visible {
+    opacity: 1;
+    animation: speech-pop 0.3s ease-out;
+}
+
+.goku-speech-bubble::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid var(--ki-gold);
+}
+
+@keyframes speech-pop {
+    0% { transform: translateX(-50%) scale(0.5); opacity: 0; }
+    60% { transform: translateX(-50%) scale(1.1); }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Kamehameha Beam */
+.goku-kamehameha {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 150, 255, 0.9) 0%, rgba(0, 200, 255, 0.5) 40%, transparent 70%);
+    opacity: 0;
+    z-index: 45;
+    pointer-events: none;
+}
+
+.goku-kamehameha.active {
+    animation: kamehameha-burst 0.6s ease-out forwards;
+}
+
+@keyframes kamehameha-burst {
+    0% {
+        width: 20px;
+        height: 20px;
+        opacity: 1;
+    }
+    50% {
+        width: 120px;
+        height: 120px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+}
+
+/* Goku entrance animation */
+.goku-blocker.entering .goku-character {
+    animation: goku-entrance 0.4s ease-out forwards;
+}
+
+@keyframes goku-entrance {
+    0% {
+        transform: scale(0) rotate(180deg);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.2) rotate(-10deg);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* No button blocked state */
+.no-btn.blocked {
+    opacity: 0.3 !important;
+    pointer-events: none !important;
+    filter: grayscale(1) !important;
+}
+
+.hint-text {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--ki-orange);
+    min-height: 20px;
+    font-style: italic;
+    transition: opacity 0.3s ease;
+}
+
+/* ============================
+   CELEBRATION SCREEN
+   ============================ */
+.celebration-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.celebration-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) saturate(1.5);
+}
+
+.celebration-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(10, 10, 26, 0.2) 0%, rgba(10, 10, 26, 0.8) 100%);
+}
+
+.celebration-text-container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    padding: 40px;
+    animation: celebration-entrance 1s ease-out forwards;
+}
+
+@keyframes celebration-entrance {
+    from {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.celebration-title {
+    margin-bottom: 16px;
+}
+
+.ultra-instinct-text {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, #E0E0FF, #FFFFFF, #C0C0FF, #E8E8FF, #FFFFFF);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: ultra-shift 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(192, 192, 255, 0.5));
+}
+
+@keyframes ultra-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.celebration-sub {
+    font-family: 'Bangers', cursive;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--ki-gold);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+.celebration-msg {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    max-width: 500px;
+    margin: 0 auto;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Hearts Rain */
+.hearts-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    animation: heart-fall linear infinite;
+    opacity: 0;
+}
+
+@keyframes heart-fall {
+    0% {
+        transform: translateY(-20px) rotate(0deg) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(0) rotate(15deg) scale(1);
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Fireworks */
+.firework {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: firework-burst 1s ease-out forwards;
+}
+
+@keyframes firework-burst {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+/* ============================
+   SCREEN SHAKE
+   ============================ */
+.screen-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 600px) {
+    .question-box {
+        padding: 24px 16px;
+        margin: 16px;
+    }
+
+    .buttons-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .dbz-btn {
+        width: 100%;
+    }
+
+    .celebration-text-container {
+        padding: 20px;
+    }
+}
+
+/* ============================
+   POWER UP EFFECT
+   ============================ */
+.power-up-flash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.9) 0%, rgba(255, 140, 0, 0.6) 30%, transparent 70%);
+    animation: power-up-burst 0.8s ease-out forwards;
+}
+
+@keyframes power-up-burst {
+    0% {
+        opacity: 1;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+
+/* ============================
+   CONFETTI
+   ============================ */
+.confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 150;
+    pointer-events: none;
+    animation: confetti-fall linear forwards;
+}
+
+@keyframes confetti-fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(720deg);
+    }
+}

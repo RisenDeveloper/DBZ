@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐉 Uma Mensagem Especial para Beatriz 🐉</title>
+    <meta name="description" content="Uma mensagem especial no estilo Dragon Ball Super">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated star particles background -->
+    <canvas id="stars-canvas"></canvas>
+
+    <!-- Ki energy particles -->
+    <div id="ki-particles"></div>
+
+    <!-- ===== INTRO SCREEN ===== -->
+    <section id="intro-screen" class="screen active">
+        <div class="intro-content">
+            <div class="dragon-radar-ping"></div>
+            <h2 class="intro-subtitle slide-up">As 7 Esferas do Dragão foram reunidas...</h2>
+            <img src="images/dragon-balls-heart.jpg" alt="Dragon Balls em formato de coração" class="dragon-balls-img pulse-glow">
+            <p class="intro-text slide-up delay-1">Um desejo precisa ser feito...</p>
+            <button id="btn-summon" class="dbz-btn summon-btn">
+                <span class="btn-text">🐉 INVOCAR SHENLONG 🐉</span>
+                <span class="btn-aura"></span>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== SHENLONG TRANSITION ===== -->
+    <section id="shenlong-screen" class="screen">
+        <div class="shenlong-content">
+            <div class="lightning-flash"></div>
+            <div class="sky-darken"></div>
+            <h1 class="shenlong-text">O CÉU ESCURECEU...</h1>
+            <p class="shenlong-sub">Shenlong apareceu e pergunta:</p>
+            <p class="shenlong-quote">"QUAL É O SEU DESEJO?"</p>
+        </div>
+    </section>
+
+    <!-- ===== MAIN QUESTION SCREEN ===== -->
+    <section id="question-screen" class="screen">
+        <div class="question-content">
+            <div class="hero-image-container">
+                <img src="images/hero-bg.jpg" alt="Cena romântica Dragon Ball" class="hero-image">
+                <div class="hero-overlay"></div>
+            </div>
+
+            <div class="question-box">
+                <div class="ki-aura-border"></div>
+                <div class="power-level-container">
+                    <span class="power-label">NÍVEL DE PODER DO CONVITE</span>
+                    <span class="power-value" id="power-counter">OVER 9000!!!</span>
+                </div>
+
+                <h1 class="main-question">
+                    <span class="question-line">Beatriz,</span>
+                    <span class="question-line highlight">quer sair comigo?</span>
+                </h1>
+
+                <p class="question-sub">
+                    Eu juntei as 7 esferas do dragão só pra fazer esse pedido! 💫
+                </p>
+
+                <div class="buttons-container">
+                    <button id="btn-yes" class="dbz-btn yes-btn">
+                        <span class="btn-text">✨ SIM! ✨</span>
+                        <span class="btn-aura yes-aura"></span>
+                    </button>
+                    <div class="no-btn-wrapper" id="no-btn-wrapper">
+                        <button id="btn-no" class="dbz-btn no-btn">
+                            <span class="btn-text">Não 😢</span>
+                            <span class="btn-aura no-aura"></span>
+                        </button>
+                        <!-- Goku Blocker -->
+                        <div class="goku-blocker" id="goku-blocker">
+                            <div class="goku-it-flash" id="goku-it-flash"></div>
+                            <div class="goku-aura" id="goku-aura">
+                                <div class="goku-character" id="goku-character">
+                                    <div class="goku-body">
+                                        <!-- Goku's hair (SSJ) -->
+                                        <div class="goku-hair"></div>
+                                        <!-- Face -->
+                                        <div class="goku-face">
+                                            <div class="goku-eye left"></div>
+                                            <div class="goku-eye right"></div>
+                                            <div class="goku-mouth"></div>
+                                        </div>
+                                        <!-- Body / Gi -->
+                                        <div class="goku-torso">
+                                            <div class="goku-gi-symbol">亀</div>
+                                        </div>
+                                        <!-- Arms blocking -->
+                                        <div class="goku-arm left-arm"></div>
+                                        <div class="goku-arm right-arm"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="goku-speech-bubble" id="goku-speech">
+                                <span id="goku-speech-text"></span>
+                            </div>
+                            <div class="goku-kamehameha" id="goku-kamehameha"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="hint-text" id="hint-text"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CELEBRATION SCREEN ===== -->
+    <section id="celebration-screen" class="screen">
+        <div class="celebration-content">
+            <img src="images/celebration.jpg" alt="Celebração" class="celebration-image">
+            <div class="celebration-overlay"></div>
+
+            <div class="celebration-text-container">
+                <h1 class="celebration-title">
+                    <span class="ultra-instinct-text">DESEJO CONCEDIDO!</span>
+                </h1>
+                <p class="celebration-sub">🐉 Shenlong realizou meu desejo! 🐉</p>
+                <p class="celebration-msg">
+                    Beatriz, você é mais poderosa que o Ultra Instinto! 💖<br>
+                    Mal posso esperar pelo nosso encontro!
+                </p>
+                <div class="hearts-rain" id="hearts-rain"></div>
+            </div>
+
+            <div class="fireworks" id="fireworks"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
